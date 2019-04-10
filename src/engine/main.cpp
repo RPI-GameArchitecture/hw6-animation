@@ -8,7 +8,6 @@
 
 working devel version
 */
-
 #include <stdlib.h>
 
 #include "framework/ga_camera.h"
@@ -87,16 +86,17 @@ int main(int argc, const char** argv)
 	model.set_active(false);
 	sim->add_entity(&model);
 
-	ga_model_component model_mesh2(&model2, "data/models/fox.dae");
+	ga_model_component model_mesh2(&model2, "data/models/Fox.dae");
 	model2.set_active(false);
 	sim->add_entity(&model2);
 
-	ga_model_component animated_mesh(&bendybar, "data/models/bendybar_animated");
+	ga_model_component animated_mesh(&bendybar, "data/models/bendybar_animated.fbx");
 	bendybar.set_active(true);
 	sim->add_entity(&bendybar);
 
 	// Create the default font:
-	g_font = new ga_font("VeraMono.ttf", 24.0f, 512, 512);
+	g_font = new ga_font("data/fonts/ttf-bitstream-vera-1.10/VeraMono.ttf", 24.0f, 512, 512);
+
 
 	// Main loop:
 	while (true)

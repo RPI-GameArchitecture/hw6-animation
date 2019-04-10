@@ -2,18 +2,19 @@
 
 uniform mat4 u_mvp;
 
-
 //****
 
 // TODO: Homework 6.
 // First, create a mat4 array to hold the skinning matrices of the skeleton.
-// Refer to ga_animated_material::bind for clues on how to define this array, 
-// and for what other uniform variables this shader will need to handle. 
+// Refer to ga_animated_material::bind for clues on how to define this array.
 
-// Next, create in variables for vertex attributes of the bar model.
+// Next, create the additional input variables for vertex attributes of the bar model.
 
 
 //****
+layout(location = 0) in vec3 in_vertex;
+layout(location = 1) in vec3 in_normal;
+layout(location = 3) in vec2 in_texcoord;
 
 
 //****
@@ -31,14 +32,13 @@ void main(void)
 	// that influence it, and each result weighted by the influence of each joint.
 	// The sum of the transformed, weighted positions is the skinned position of
 	// the vertex.  It can then be multiplied by the mvp matrix.
-	// The same will need to be done for the normal vectors 
-	
     //****
 
+	
+
 	//*****
-	o_normal = vec3(1.0, 0.0, 0.0);
+	gl_Position = u_mvp * vec4(in_vertex,1.0);
+	o_normal = (u_mvp * vec4(in_normal, 0.0)).xyz;	
 	o_color = vec3(1.0, 1.0, 1.0);
 	o_uv = in_texcoord;
-	gl_Position = u_mvp * vec4(in_vertex,1.0);
-
 }
